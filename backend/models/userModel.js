@@ -13,6 +13,10 @@ const UserSchema = new Schema({
   image: {
     type: String,
   },
+  preferredLang:{
+    type:String,
+    default:'en'
+  }
 });
 const UserModel = mongoose.model("User", UserSchema);
 module.exports = UserModel;

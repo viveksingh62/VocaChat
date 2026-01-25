@@ -11,8 +11,13 @@ const MessageSchema = new mongoose.Schema(
       ref: "User",
         required: true, 
     },
-    text: String,
+    textOriginal: String,
+    textTranslated:String,
+    targetLang:String,
+    status:{type:String,default:"sent"}
+
   },
+
   { timestamps: true }
 );
 

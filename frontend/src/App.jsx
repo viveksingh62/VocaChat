@@ -1,44 +1,66 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
+
 import Googlelogin from "./pages/Googlelogin";
+import Chatpage from "./pages/Chatpage";
+import Chat from "./pages/Chat";
 import Dashboard from "./pages/Dashboard";
 import Notfound from "./pages/Notfound";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import Refreshhandler from "./utils/Refreshhandler";
-import Chat from "./pages/Chat.jsx";
+import Settings from "./pages/Settings";
 
-import Chatpage from "./pages/Chatpage.jsx";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
+function PrivateRoute({ children }) {
+  const { user } = useContext(AuthContext);
+
+  // While AuthContext is restoring user from localStorage
+  if (user === null) return null;
+
+  return user ? children : <Navigate to="/login" />;
+}
+
 function App() {
-  const [isAuthenticated, setAuthenticated] = useState(false);
-  const GoogleAuthWrapper = () => {
-    return (
-      <GoogleOAuthProvider clientId="972235488284-nuuuld2gesg2182eq4sv24pk86tf54i1.apps.googleusercontent.com">
-        <Googlelogin />
-      </GoogleOAuthProvider>
-    );
-  };
-  const PrivateRoute = ({ element }) => {
-    return isAuthenticated ? element : <Navigate to="/login" />;
-  };
   return (
     <BrowserRouter>
-      <Refreshhandler setAuthenticated={setAuthenticated} />
       <Routes>
-        <Route path="/chat" element={<Chat />} />
-
+        <Route
+          path="/login"
+          element={
+            <GoogleOAuthProvider clientId="972235488284-nuuuld2gesg2182eq4sv24pk86tf54i1.apps.googleusercontent.com">
+              <Googlelogin />
+            </GoogleOAuthProvider>
+          }
+        />
+<Route path="/settings" element={<Settings />} />
         <Route
           path="/chatpage"
-          element={<PrivateRoute element={<Chatpage />} />}
+          element={
+            <PrivateRoute>
+              <Chatpage />
+            </PrivateRoute>
+          }
         />
-        <Route path="/login" element={<GoogleAuthWrapper />} />
-        <Route path="/" element={<Navigate to="/login" />} />
+
+        <Route
+          path="/chat"
+          element={
+            <PrivateRoute>
+              <Chat />
+            </PrivateRoute>
+          }
+        />
+
         <Route
           path="/dashboard"
-          element={<PrivateRoute element={<Dashboard />} />}
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
         />
+
+        <Route path="/" element={<Navigate to="/chatpage" />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
     </BrowserRouter>
