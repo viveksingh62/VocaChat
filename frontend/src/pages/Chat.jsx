@@ -188,9 +188,9 @@ function Chat({ conversationId }) {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-slate-100">
+    <div className="flex flex-col h-screen bg-slate-60">
       {/* Header */}
-      <div className="bg-white px-4 py-3 shadow flex items-center justify-between">
+      <div className="bg-slate-70 px-4 py-3 shadow flex items-center justify-between">
         <button onClick={() => navigate("/")} className="text-sky-600">
           ← Back
         </button>

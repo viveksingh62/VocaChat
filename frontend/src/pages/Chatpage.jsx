@@ -72,7 +72,7 @@ const Chatpage = () => {
         {!showSidebar && (
           <button
             onClick={() => setShowSidebar(true)}
-            className="md:hidden fixed top-3 left-3 bg-sky-500 text-white px-3 py-1 rounded-full shadow"
+            className="md:hidden fixed top-3 left-3 bg-sky-50 text-black px-3 py-1 rounded-full shadow "
           >
             ← Chats
           </button>

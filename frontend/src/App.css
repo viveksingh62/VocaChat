@@ -1,1 +1,11 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Sour+Gummy:opsz,wght,wdth@8..144,400..700,100&display=swap");
+
+.sour-gummy-boom {
+  font-family: "Sour Gummy", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
