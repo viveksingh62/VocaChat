@@ -7,7 +7,8 @@ async function translateText(text, targetLang,sourceLang) {
       {
         params: {
           q: text,
-          langpair: `${sourceLang}|${targetLang}`
+          langpair: `${sourceLang}|${targetLang}`,
+             de: "easyvivek3@example.com", 
         },
         timeout: 5000 // Add timeout
       }

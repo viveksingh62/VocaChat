@@ -162,6 +162,10 @@ io.on("connection", async (socket) => {
   targetLang,
 });
 
+ if (!translated || translated === text) {
+      console.log("Translation failed or same text");
+      return;
+    }
 
         newMessage.textTranslated = translated;
         newMessage.status = "translated";
