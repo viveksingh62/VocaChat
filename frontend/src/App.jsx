@@ -27,7 +27,7 @@ function App() {
         <Route
           path="/login"
           element={
-            <GoogleOAuthProvider clientId="972235488284-nuuuld2gesg2182eq4sv24pk86tf54i1.apps.googleusercontent.com">
+            <GoogleOAuthProvider clientId="30665335422-vvt87a05ii0cn9fchlprjn9rljgurr7c.apps.googleusercontent.com">
               <Googlelogin />
             </GoogleOAuthProvider>
           }
