@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext, useRef } from "react";
 import api from "../utils/api";
 import { AuthContext } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import { SocketContext } from "../context/socketContext";
+import { SocketContext } from "../context/SocketContext";
 
 function Chat({ conversationId }) {
   const navigate = useNavigate();
