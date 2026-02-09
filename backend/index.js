@@ -36,9 +36,11 @@ app.use(
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin:  [ process.env.CLIENT_URL, "http://localhost:5173"],
-        credentials: true,
+    origin: "https://vocachat.vercel.app", // ⚠️ EXACT STRING
+    methods: ["GET", "POST"],
+    credentials: true,
   },
+  transports: ["polling", "websocket"],
 });
 
 io.use((socket, next) => {
@@ -64,6 +66,11 @@ app.use("/user", userRouter);
 app.use("/auth", authRouter);
 app.use("/conversation", conversationRouter);
 app.use("/message", messageRouter);
+
+io.engine.on("initial_headers", (headers, req) => {
+  headers["Access-Control-Allow-Origin"] = "https://vocachat.vercel.app";
+  headers["Access-Control-Allow-Credentials"] = "true";
+});
 
 io.on("connection", async (socket) => {
   console.log("User connected", socket.id);
