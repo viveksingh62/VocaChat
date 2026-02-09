@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
 
       setUser({
         ...parsed.user,
-        _id: decoded._id, // ✅ FIX
+        _id: decoded._id, // FIX
         token: parsed.token,
       });
     }
@@ -26,12 +26,12 @@ export const AuthProvider = ({ children }) => {
 
     const finalUser = {
       ...data.user,
-      _id: decoded._id, // ✅ FIX
+      _id: decoded._id, //  FIX
       token: data.token,
     };
 
     localStorage.setItem("user-info", JSON.stringify(data));
-    setUser(finalUser); // ✅ VERY IMPORTANT
+    setUser(finalUser); //  VERY IMPORTANT
   };
 
   return (

@@ -5,7 +5,7 @@ const auth = require("../middleware/auth.js");
 
 router.get("/:conversationId", auth, async (req, res) => {
  const page = parseInt(req.query.page) || 0;
-  const limit = 10;
+  const limit = 20;
 
   const messages = await Message.find({
     conversationId: req.params.conversationId,

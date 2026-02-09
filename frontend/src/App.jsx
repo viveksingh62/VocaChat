@@ -32,7 +32,7 @@ function App() {
             </GoogleOAuthProvider>
           }
         />
-<Route path="/settings" element={<Settings />} />
+        <Route path="/settings" element={<Settings />} />
         <Route
           path="/chatpage"
           element={

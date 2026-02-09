@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const express = require("express");
 const app = express();
+app.set("trust proxy", 1);
 const authRouter = require("./routes/authRouter");
 
 const PORT = process.env.PORT || 8080;
@@ -21,14 +22,15 @@ const redisClient = require("./config/redisClient.js");
 // const { useId } = require("react");
 app.use(
   cors({
-    origin: "*",
+    origin:  process.env.CLIENT_URL,
     credentials: true,
   }),
 );
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin:  process.env.CLIENT_URL,
+        credentials: true,
   },
 });
 
@@ -47,6 +49,7 @@ io.use((socket, next) => {
     next(new Error("Invalid token"));
   }
 });
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
